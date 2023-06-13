@@ -7,7 +7,6 @@ class Solution {
   public:
     // Function to return a list containing the DFS traversal of the graph.
     void dfs(int i,int V,vector<int> adj[],vector<int>& vis,vector<int>& ans){
-        if(i>=V || vis[i]) return;
         ans.push_back(i);
         vis[i]=1;
         for(auto it:adj[i]){

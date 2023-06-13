@@ -8,14 +8,11 @@ class Solution {
     void dfs(vector<vector<char>>& grid,vector<vector<int>>& vis,int r,int c){
         if(r<0 || c<0 || r>=grid.size() || c>=grid[0].size() || grid[r][c]=='0' || vis[r][c]==1) return;
         vis[r][c]=1;
-        dfs(grid,vis,r-1,c);
-        dfs(grid,vis,r+1,c);
-        dfs(grid,vis,r,c-1);
-        dfs(grid,vis,r,c+1);
-        dfs(grid,vis,r-1,c-1);
-        dfs(grid,vis,r+1,c-1);
-        dfs(grid,vis,r-1,c+1);
-        dfs(grid,vis,r+1,c+1);
+        for(int x=-1;x<=1;x++){
+            for(int y=-1;y<=1;y++){
+                dfs(grid,vis,r+x,c+y);
+            }
+        }
     }
     // Function to find the number of islands.
     int numIslands(vector<vector<char>>& grid) {

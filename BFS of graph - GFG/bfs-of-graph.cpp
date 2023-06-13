@@ -11,10 +11,10 @@ class Solution {
         queue<int> q;
         q.push(0);
         vector<int> ans,vis(V);
+        vis[0]=1;
         while(!q.empty()){
             int node=q.front();
             q.pop();
-            vis[node]=1;
             ans.push_back(node);
             for(int i=0;i<adj[node].size();i++){
                 if(!vis[adj[node][i]]){

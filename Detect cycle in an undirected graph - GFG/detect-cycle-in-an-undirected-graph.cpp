@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    bool detect(int src,vector<int> adj[],vector<int>& vis){
+    /*bool detect(int src,vector<int> adj[],vector<int>& vis){
         queue<pair<int,int>> q;
         vis[src]=1;
         q.push({src,-1});
@@ -21,6 +21,15 @@ class Solution {
             }
         }
         return false;
+    }*/
+    bool detect(int node,int parent,vector<int> arr[],vector<int>& vis){
+        vis[node]=1;
+        for(auto adjnode:arr[node]){
+            if(!vis[adjnode]){
+                if(detect(adjnode,node,arr,vis)) return true;
+            }else if(parent!=adjnode) return true;
+        }
+        return false;
     }
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
@@ -28,7 +37,7 @@ class Solution {
         vector<int> vis(V);
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(detect(i,adj,vis)) return true;
+                if(detect(i,-1,adj,vis)) return true;
             }
         }
         return false;

@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    bool check(int s,int V,vector<int>adj[],vector<int>& color){
+    /*bool check(int s,int V,vector<int>adj[],vector<int>& color){
         queue<int> q;
 	    q.push(s);
 	    color[s]=0;
@@ -21,13 +21,22 @@ public:
 	        }
 	    }
 	    return true;
+    }*/
+    bool dfs(int s,vector<int>adj[],vector<int>& color,int cur_color){
+        color[s]=cur_color;
+        for(auto it:adj[s]){
+            if(color[it]==-1){
+                if(!dfs(it,adj,color,!cur_color)) return false;
+            }else if(color[it]==cur_color) return false;
+        }
+        return true;
     }
 	bool isBipartite(int V, vector<int>adj[]){
 	    // Code here
 	   vector<int> color(V,-1);
 	   for(int i=0;i<V;i++){
 	       if(color[i]==-1){
-	           if(!check(i,V,adj,color)) return false;
+	           if(!dfs(i,adj,color,0)) return false;
 	       }
 	   }
 	   return true;

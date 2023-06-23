@@ -15,18 +15,17 @@ class Solution {
             adj[x[0]].emplace_back(x[1]);
             adj[x[1]].emplace_back(x[0]);
         }
-        queue<pair<int,int>> q;
-        q.push({src,0});
+        queue<int> q;
+        q.push(src);
         vector<int> dis(N,INT_MAX);
         dis[src]=0;
         while(!q.empty()){
-            int node=q.front().first;
-            int cur_dis=q.front().second;
+            int node=q.front();
             q.pop();
             for(auto it:adj[node]){
-                if(dis[it]>(cur_dis+1)){
-                    dis[it]=cur_dis+1;
-                    q.push({it,cur_dis+1});
+                if(dis[node]+1<dis[it]){
+                    dis[it]=dis[node]+1;
+                    q.push(it);
                 }
             }
         }

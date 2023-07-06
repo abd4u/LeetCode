@@ -29,11 +29,8 @@ class Solution {
                 int r=row+drow[i];
                 int c=col+dcol[i];
                 if(r>=0 && r<m && c>=0 && c<n && grid[r][c] && cur_dis+1<dis[r][c]){
-                    int total_dis=cur_dis+1;
-                    if(total_dis<dis[r][c]){
-                        dis[r][c]=total_dis;
-                        q.push({dis[r][c],{r,c}});
-                    }
+                    dis[r][c]=cur_dis+1;
+                    q.push({dis[r][c],{r,c}});
                 }
             }
         }

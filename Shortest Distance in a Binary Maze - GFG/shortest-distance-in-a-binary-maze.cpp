@@ -20,17 +20,15 @@ class Solution {
         q.push({0,source});
         int drow[]={1,0,-1,0};
         int dcol[]={0,-1,0,1};
-        grid[source.first][source.second]=0;
         while(!q.empty()){
             int row=q.front().second.first;
             int col=q.front().second.second;
             int cur_dis=q.front().first;
             q.pop();
-            grid[row][col]=0;
             for(int i=0;i<4;i++){
                 int r=row+drow[i];
                 int c=col+dcol[i];
-                if(r>=0 && r<m && c>=0 && c<n && grid[r][c]){
+                if(r>=0 && r<m && c>=0 && c<n && grid[r][c] && cur_dis+1<dis[r][c]){
                     int total_dis=cur_dis+1;
                     if(total_dis<dis[r][c]){
                         dis[r][c]=total_dis;
